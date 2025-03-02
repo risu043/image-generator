@@ -1,6 +1,6 @@
 <img src="https://github.com/risu043/image-generator/blob/main/public/ogp.png" width="600" alt="readme">
-## 画像ジェネレーター
-- 選択した画像ファイルを元に、桜のデコレーションが入った画像を生成する
+
+## image generator
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
