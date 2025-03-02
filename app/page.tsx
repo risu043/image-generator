@@ -22,6 +22,7 @@ export default function OgImageGenerator() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [color, setColor] = useState('#ffccff');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -72,6 +73,7 @@ export default function OgImageGenerator() {
           image: previewImage,
           width: originalWidth,
           height: originalHeight,
+          color,
         }),
       });
 
@@ -117,7 +119,7 @@ export default function OgImageGenerator() {
   return (
     <div className="container mx-auto py-10 px-4">
       <h1 className="text-3xl font-bold text-center mb-8">
-        アイコンデコレーター
+        画像ジェネレーター
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -152,6 +154,36 @@ export default function OgImageGenerator() {
                 accept="image/*"
                 onChange={handleFileChange}
               />
+            </div>
+            <div className="mt-4">
+              <h3 className="text-sm font-medium mb-2">
+                デコレーションの色を選択
+              </h3>
+              <div className="flex items-center gap-3">
+                <div
+                  className="relative w-10 h-10 rounded-md overflow-hidden border border-gray-200 shadow-sm cursor-pointer"
+                  style={{ backgroundColor: color }}
+                  onClick={() =>
+                    document.getElementById('color-picker')?.click()
+                  }
+                >
+                  <input
+                    id="color-picker"
+                    type="color"
+                    value={color}
+                    onChange={(e) => setColor(e.target.value)}
+                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                  />
+                </div>
+                <label htmlFor="color-picker" className="flex flex-col">
+                  <span className="text-sm font-medium">
+                    {color.toUpperCase()}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    クリックして色を変更
+                  </span>
+                </label>
+              </div>
             </div>
 
             {error && <p>{error}</p>}
@@ -197,9 +229,9 @@ export default function OgImageGenerator() {
 
         <Card>
           <CardHeader>
-            <CardTitle>生成されたデコ画像</CardTitle>
+            <CardTitle>生成された画像</CardTitle>
             <CardDescription>
-              生成されたOG画像がここに表示されます
+              生成された画像がここに表示されます
             </CardDescription>
           </CardHeader>
           <CardContent>
